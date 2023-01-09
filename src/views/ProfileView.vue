@@ -1,10 +1,12 @@
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex';
+
 export default {
   computed: {
-    ...mapState({
-      username: (state) => state.profile.username
-    })
+    // ...mapState({
+    //   username: (state) => state.profile.username
+    // }),
+    ...mapState('profile', ['username'])
   },
   methods: {
     ...mapActions('profile', ['updateUsername'])

@@ -1,6 +1,8 @@
-const store = {
+import { reactive } from 'vue';
+
+const store = reactive({
   profile: {
-    username: ''
+    username: 'joseph.paucar'
   },
   contacts: [
     { 
@@ -45,5 +47,10 @@ const store = {
       name: 'Canal 2',
       messages: [3,4]
     }
-  ]
-}
+  ],
+  updateUsername(username) {
+    this.profile.username = username
+  }
+});
+
+export default store;

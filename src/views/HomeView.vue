@@ -30,11 +30,21 @@ export default {
       ]
     }
   },
-  computed: {
+  // computed: mapState({
+  //   username: (state) => state.username
+  // }),
+  // computed: { // utilizando map state sin alterar otras funcines en computed
+  //   foo() {},
+  //   ...mapState({
+  //     username: (state) => state.username
+  //   })
+  // },
+  computed: { // usando el alias username dentro de una lista para acortar la funcion
+    // ...mapState(['username']),
     ...mapState(['status']),
     ...mapGetters('profile', ['firstName']),
-    ...mapGetters('channels', ['getChannels'])
-  },
+    // ...mapGetters('otromodulo', ['firstName']),
+  }
 }
 </script>
 
@@ -44,13 +54,13 @@ export default {
     <InputSearch v-model="search" />
     <ProfileCard
       :avatar="profile.avatar"
-      :username="firstName('')"
+      :username="firstName"
       :status="status"
     />
     <RouterLink to="/" class="channels-title">Canales <Icon icon="carbon:hashtag" /></RouterLink>
     <div class="channels">
       <ChatItem
-        v-for="channel in getChannels(search)"
+        v-for="channel in channels"
         :key="channel.id"
         :id="channel.id"
         :name="channel.name"
